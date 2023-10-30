@@ -1,0 +1,1037 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+.registrationPage {
+    padding-top: 140px;
+    padding-bottom: 188px;
+}
+
+.text_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text_container h4 {
+    padding-top: 42px;
+    padding-bottom: 11px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 21.5px;
+    font-family: 'Nunito', sans-serif;
+    color: #11175D;
+}
+
+.text_container p {
+    padding-bottom: 51px;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 21.5px;
+    font-family: 'Nunito', sans-serif;
+    color: #11175D;
+}
+
+.inputcss {
+    width: 30% !important;
+    margin-top: 30px !important;
+}
+
+.alert {
+    margin: 10px;
+    width: 28% !important;
+}
+
+.regBtn {
+    width: 30% !important;
+    margin-top: 40px !important;
+    border-radius: 87px !important;
+    padding: 19px 0 !important;
+}
+
+.login {
+    padding-top: 140px;
+    padding-bottom: 188px;
+}
+
+.login .text_container h4 {
+    padding-top: 18px;
+    padding-bottom: 11px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 21.5px;
+    font-family: 'Nunito', sans-serif;
+    color: #11175D;
+}
+
+.login .text_container p {
+    padding-bottom: 30px;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 21.5px;
+    font-family: 'Nunito', sans-serif;
+    color: #11175D;
+}
+
+.loginBtn {
+    width: 30% !important;
+    margin-top: 40px !important;
+    border-radius: 87px !important;
+    padding: 19px 0 !important;
+}
+
+.logo {
+    display: flex;
+    padding: 17px 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoImg {
+    width: 46px;
+    height: 46px;
+}
+
+.feedBtn {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 10px 25px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.feedLink {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    text-decoration: none;
+    padding: 10px 25px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+/* ///////////////////////////////////////////////
+Profife page Css
+///////////////////////////////////////////////// */
+
+.profileContent {
+
+    padding-top: 40px;
+    padding-left: 130px;
+    background: #f7f9fb;
+
+}
+
+.cover {
+    position: relative;
+    width: 850px;
+    height: 180px;
+}
+
+.editCoverbtn {
+    display: flex;
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 57px;
+    align-items: center;
+    padding: 10px 15px;
+    background: hsla(0, 0%, 100%, 0.9);
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.editicon {
+    width: 16px;
+    height: 16px;
+    padding-right: 10px;
+
+}
+
+.profileInfo {
+    width: 850px;
+
+}
+
+.aboutPicContent {
+    display: flex;
+    position: relative;
+    background: #fff;
+    padding: 25px 47px 30px 25px;
+}
+
+.modalinputcss {
+    width: 99% !important;
+}
+
+.inputUpdateBtn {
+    width: 33%;
+    margin-top: 20px !important;
+    margin-left: 32% !important;
+}
+
+
+.profilePic {
+    width: 35%;
+
+}
+
+.profilePic img {
+    position: absolute;
+    top: -30px;
+    width: 170px;
+    height: 170px;
+    border: 10px solid #fff;
+    border-radius: 50%;
+}
+
+.namelocation {
+    display: flex;
+    align-items: center;
+}
+
+.nameIcon {
+    display: flex;
+    align-items: center;
+}
+
+.coverproLogo {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 10px;
+}
+
+.profileName {
+    font-size: 18px;
+    margin-right: 28px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+/* .namelocation p{
+    font-size: 33px;
+    margin-right: 20px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #c41313;
+} */
+
+.locaIcon {
+    color: #0077B5;
+    padding-right: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+
+}
+
+.profileNameAbout {
+    width: 780px;
+}
+
+.profileNameAbout h4 {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+.profileNameAbout p {
+    padding-top: 10px;
+    padding-bottom: 14px;
+    line-height: 150%;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+.editInfotbtn {
+    font-family: 'Barlow', sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    padding: 5px 15px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.contactbtn {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 9px 45px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.menuTab {
+    padding: 30px 0;
+}
+
+.profileBtn {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    border: none;
+    padding: 15px 95px;
+    background: #fff;
+    color: #181818;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.profileBtn.active,
+.friends.active,
+.post.active {
+    padding-top: 21px;
+    padding-bottom: 15px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+}
+
+
+.friends {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    border: none;
+    padding: 15px 95px;
+    background: #fff;
+    color: #181818;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.post {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    border: none;
+    padding: 15px 95px;
+    background: #fff;
+    color: #181818;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+
+/* Profile Details CSS */
+
+.ProfileDetailsContain {
+    width: 850px;
+}
+
+.editAboutbtn {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 5px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.aboutPart {
+    margin-top: 30px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.aboutPart p {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #181818;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.aboutPart .seeMorebtn {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #0275B1;
+    border: none;
+    background: none;
+}
+
+
+
+.projectsPart {
+    margin-top: 20px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.projectTile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.innerTextPro {
+    display: flex;
+}
+
+.innerTextPro h4 {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+.innerTextPro p {
+    padding-left: 22px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #747474;
+}
+
+.editprojectsbtn {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 5px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.projectImages {
+    padding-top: 20px;
+    padding-bottom: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.projectImg {
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.experienceName {
+    display: flex;
+    position: relative;
+}
+
+
+.experiencePart {
+    position: relative;
+    margin-top: 20px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+
+.experiencePart h4 {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+.experienceDetails {
+    padding-left: 16px;
+
+}
+
+.modalTitleDelbtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modalexInputcss {
+    width: 100% !important;
+    margin: 10px 0 !important;
+}
+
+.inputdeleteBtn {
+    width: 15%;
+}
+
+.addExBtn {
+    position: absolute;
+    top: 33px;
+    left: 150px;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 4px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.exEditBtn {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 5px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.eduEditBtn {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 5px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.experienceDetails h4 {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.experienceName {
+    padding-top: 20px;
+}
+
+.experinceLogo {
+    width: 54px;
+    height: 54px;
+}
+
+.experienceLocation {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.experienceLocation .LocaComName {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.experienceLocation .LocaName {
+    font-size: 10px;
+    font-weight: 300;
+    padding-left: 20px;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.expYear {
+    font-size: 10px;
+    font-weight: 300;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+
+.exTime {
+    font-size: 10px;
+    font-weight: 500;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    padding-left: 20px;
+    line-height: 150%;
+    color: #0275B1;
+}
+
+.exSummery {
+    padding-top: 10px;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.experienceTime {
+    display: flex;
+}
+
+
+.EducationPart {
+    position: relative;
+    margin-top: 20px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.educationName {
+    position: relative;
+    padding-top: 20px;
+    display: flex;
+}
+
+.EducationLogo {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+}
+
+.EducationDetails {
+    /* position: relative; */
+    padding-left: 16px;
+}
+
+.eduHeadingText {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    color: #181818;
+}
+
+.eduInsText {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.eduDegreeName {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.eduYear {
+    padding-top: 5px;
+    font-size: 10px;
+    font-weight: 300;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.eduYearAddiText {
+    padding-top: 10px;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+/* Friends Details css */
+/* Friends Details css */
+/* Friends Details css */
+
+.frDetailsBox {
+    margin-top: 20px;
+    display: flex;
+}
+
+.frDetailsBox:last-child {
+    margin-top: 0;
+
+}
+
+.profilepic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.box {
+    width: 415px;
+    height: 45vh;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+}
+
+.list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin: 20px 0;
+}
+
+.list:last-child {
+    border-bottom: 0;
+
+}
+
+.list .profilepic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.postBox {
+    position: relative;
+    margin-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+    width: 850px;
+    background: #fff;
+
+}
+
+
+.postAdminInfo {
+    border-top: 1px solid #F4F4F4;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.postAdminInfo .profileImg {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.titleInfo {
+    padding-left: 23px;
+}
+
+.titleInfo h4 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.titleInfo p {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.postBox .postText {
+    padding-bottom: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.postEditDel {
+    position: absolute;
+    top: 9px;
+    right: 0;
+}
+
+.delPosttbtn {
+    margin: 5px;
+    margin-left: 350px;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 6px 13px;
+    background: rgb(230, 44, 44);
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 500;
+}
+.editPosttbtn {
+    margin: 5px;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 6px 13px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 500;
+}
+.updatePosttbtn {
+  
+    margin-top: 8px;
+    margin-left: 480px;
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    padding: 6px 13px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Feed part css */
+/* Feed part css */
+/* Feed part css */
+/* Feed part css */
+
+.feedLogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 40px;
+
+}
+
+.profileNAmePic {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.profileNAmePic img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.profileNAmePic p {
+    padding-left: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.feedContent {
+    padding: 40px 130px;
+    background: #f7f9fb;
+}
+
+.feedContainer {
+    width: 850px;
+    position: relative;
+}
+
+.profileHighLight {
+    position: absolute;
+    top: 0;
+    right: -330px;
+    width: 290px;
+    background: #fff;
+}
+
+.coverContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.coverPhoto img {
+    width: 290px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.coverContent .proPic {
+    position: absolute;
+    top: 75px;
+    border: 5px solid #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.coverLogo {
+    width: 12px;
+    height: 12px;
+    margin-left: 20px;
+}
+
+.coverConText {
+    display: flex;
+    margin-top: 66px;
+    padding-bottom: 6px;
+}
+
+.coverConText h4 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.coverBioText {
+    padding: 0 26px 21px 29px;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.newPost {
+    margin-bottom: 35px;
+    padding: 25px 26px 26px 30px;
+    background: #fff;
+
+}
+
+.newPost p {
+    font-size: 12px;
+    padding-bottom: 17px;
+    font-weight: 500;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.postInputCss {
+    display: flex;
+    align-items: center;
+    padding-top: 29px;
+    border-top: 1px solid #F4F4F4;
+}
+
+.textarea {
+    resize: none;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: hsla(0, 0%, 9%, 0.20);
+}
+
+.textarea::placeholder {
+    color: hsla(0, 0%, 9%, 0.20);
+}
+
+.textarea:not(:placeholder-shown) {
+    resize: both;
+    color: #181818;
+}
+
+.postUploadImg {
+    width: 24px;
+    height: 24px;
+    padding-right: 24px;
+}
+
+.newPostBtn {
+    padding: 9px 9px 7px 7px;
+    font-size: 16px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.postBoxFeed {
+    position: relative;
+    margin-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+    width: 850px;
+    background: #fff;
+
+}
+
+.postBoxFeed .postText {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
