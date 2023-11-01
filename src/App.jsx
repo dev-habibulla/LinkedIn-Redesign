@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import Feed from "./pages/Feed";
 import ExperienceForm from './components/Expreance';
 import Educations from './components/Educations';
+import BoxTest from './components/BoxTest';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/feed" element={<Feed />} />
-      <Route path="/ex" element={<Educations />} />
+      <Route path="/ex" element={<BoxTest />} />
     </Route>
   )
 );

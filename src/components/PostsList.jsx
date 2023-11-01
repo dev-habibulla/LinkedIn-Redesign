@@ -70,6 +70,7 @@ const PostsList = () => {
   };
 
   let handlePostUpdate = (item) => {
+
     if (postUpdate.post) {
       update(ref(db, "post/" + item.postId), {
         post: postUpdate.post,

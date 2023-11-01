@@ -163,7 +163,7 @@ const Login = () => {
           </Button>
         )}
 
-        <p>
+        <p className="focusText">
           Don’t have an account ?{" "}
           <Link to="/" className="focus">
             Sign up

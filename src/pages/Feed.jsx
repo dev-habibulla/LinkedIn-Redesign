@@ -157,6 +157,7 @@ const Feed = () => {
       PosterPic: item.profile_picture,
       PosterProfession: item.bio,
     });
+    setNewPost("");
   };
 
   let handleDelete = (item) => {
@@ -197,18 +198,21 @@ const Feed = () => {
           {userProfileInfo.map((item) => (
             <>
               <div className="profileHighLight">
-                <div className="coverPhoto">
-                  <Image src={Cover} />
-                </div>
-                <div className="coverContent">
-                  <Image src={ProfilePic} className="proPic" />
-                  <div className="coverConText">
-                    <h4>{item.username}</h4>
-                    <Image src={CoverLogo} className="coverLogo" />
+                <div className="profiledetailsRightSide">
+                  <div className="rightCover">
+                    <Image src={Cover} />
                   </div>
-                  <p className="coverBioText">{item.bio}</p>
+                  <div className="rightCoverContent">
+                    <Image src={ProfilePic} className="rightProPic" />
+                    <div className="rightCoverText">
+                      <h4>{item.username}</h4>
+                      <Image src={CoverLogo} className="rightCoverLogo" />
+                    </div>
+                    <p className="rightBioText">{item.bio}</p>
+                  </div>
                 </div>
               </div>
+
               <div className="newPost">
                 <p>new post</p>
                 <div className="postInputCss">
@@ -218,6 +222,7 @@ const Feed = () => {
                     rows="1"
                     cols="76"
                     placeholder="What’s on your mind?"
+                    value={newPost}
                   ></textarea>
                   <GoImage className="postUploadImg" />
                   <BsSend

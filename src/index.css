@@ -85,6 +85,23 @@
     padding: 19px 0 !important;
 }
 
+.focusText {
+    margin: 20px 0;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    font-family: 'Nunito', sans-serif !important;
+    color: #181818 !important;
+}
+
+.focus {
+    padding-left: 10px;
+    text-decoration: none;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    font-family: 'Nunito', sans-serif !important;
+    color: orange !important;
+}
+
 .logo {
     display: flex;
     padding: 17px 40px;
@@ -822,6 +839,7 @@ Profife page Css
     font-size: 10px;
     font-weight: 500;
 }
+
 .editPosttbtn {
     margin: 5px;
     font-family: 'Barlow', sans-serif;
@@ -834,8 +852,9 @@ Profife page Css
     font-size: 10px;
     font-weight: 500;
 }
+
 .updatePosttbtn {
-  
+
     margin-top: 8px;
     margin-left: 480px;
     font-family: 'Barlow', sans-serif;
@@ -894,7 +913,10 @@ Profife page Css
     position: relative;
 }
 
-.profileHighLight {
+
+
+
+/* .profileHighLight {
     position: absolute;
     top: 0;
     right: -330px;
@@ -953,7 +975,92 @@ Profife page Css
     text-transform: capitalize;
     line-height: 150%;
     color: #181818;
+} */
+
+/* Profile details Right Side css */
+
+.profileHighLight {
+    position: absolute;
+    top: 0;
+    right: -330px;
+    width: 290px;
+    background: #fff;
 }
+
+.profiledetailsRightSide {
+    position: relative;
+    width: 290px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+}
+
+.profiledetailsRightSide .rightCoverText {
+    padding-top: 60px;
+    padding-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.profiledetailsRightSide .rightCoverText h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+
+}
+
+.rightCoverLogo {
+    width: 12px;
+    height: 12px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.rightBioText {
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    text-transform: capitalize;
+    line-height: 150%;
+    color: #181818;
+}
+
+.profiledetailsRightSide .rightCover {
+    width: 290px;
+    height: 120px;
+}
+
+.profiledetailsRightSide .rightCover img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.profiledetailsRightSide .rightCoverContent .rightProPic {
+    position: absolute;
+    top: 75px;
+    left: 95px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+}
+
+.profiledetailsRightSide .rightCoverContent {
+    padding: 16px 21px 26px 29px;
+}
+
+
+
 
 .newPost {
     margin-bottom: 35px;

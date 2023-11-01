@@ -225,13 +225,11 @@ const Registration = () => {
           </Button>
         )}
 
-        <p>
-          {" "}
-          Alredy have an account ?{" "}
+        <p className="focusText">
+          Alredy have an account ?
           <Link to="/login" className="focus">
-            {" "}
-            Sign in{" "}
-          </Link>{" "}
+            Sign in
+          </Link>
         </p>
       </div>
     </div>

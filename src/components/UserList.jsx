@@ -120,6 +120,7 @@ const UserList = () => {
               onClick={() => handleReqCancle(item)}
               className="frlistbtn"
               variant="contained"
+              color="error"
             >
               Cancel
             </Button>
