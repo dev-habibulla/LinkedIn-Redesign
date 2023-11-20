@@ -11,6 +11,13 @@
     padding-bottom: 188px;
 }
 
+
+.loaderr{
+   
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+}
 .text_container {
     display: flex;
     flex-direction: column;
@@ -1060,8 +1067,6 @@ Profife page Css
 }
 
 
-
-
 .newPost {
     margin-bottom: 35px;
     padding: 25px 26px 26px 30px;
@@ -1111,6 +1116,12 @@ Profife page Css
     width: 24px;
     height: 24px;
     padding-right: 24px;
+}
+
+.updateUploadImg {
+    width: 24px;
+    height: 24px;
+    padding-left: 80%;
 }
 
 .newPostBtn {

@@ -22,10 +22,18 @@ import {
   update,
 } from "firebase/database";
 
+import {
+  getStorage,
+  ref as imgref,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { ColorRing } from "react-loader-spinner";
 
 const style = {
   position: "absolute",
@@ -42,12 +50,15 @@ const style = {
 const Feed = () => {
   const auth = getAuth();
   const db = getDatabase();
+  const storage = getStorage();
+  let [loader, setLoader] = useState(false);
   let navigate = useNavigate();
   let dispatch = useDispatch();
   let [userProfileInfo, setUserProfileInfo] = useState([]);
   let userInfo = useSelector((state) => state.logedUser.value);
   let [postList, setPostList] = useState([]);
   let [newPost, setNewPost] = useState("");
+  let [imgUpload, setImgUpload] = useState("");
   let [postUpdate, setPostUpdate] = useState({
     post: "",
   });
@@ -56,17 +67,21 @@ const Feed = () => {
   const [selectedPost, setSelectedPost] = useState(null);
 
   const handleOpen = (item) => {
+    setImgUpload(item.img); // Corrected line
+    setOpen(true);
     setSelectedPost(item);
     setPostUpdate({
       post: item.post,
     });
-    setOpen(true);
   };
 
   const handlePostUpdate = () => {
     if (selectedPost && postUpdate.post) {
       update(ref(db, `post/${selectedPost.postId}`), {
         post: postUpdate.post,
+        img: imgUpload,
+      }).then(() => {
+        setImgUpload("");
       });
       toast.success("Update Successful", {
         position: "bottom-center",
@@ -149,15 +164,46 @@ const Feed = () => {
     });
   };
 
-  let handleNewPost = (item) => {
-    set(push(ref(db, "post")), {
-      post: newPost,
-      PosterUid: item.userUid,
-      PosterName: item.username,
-      PosterPic: item.profile_picture,
-      PosterProfession: item.bio,
+  let hangleImageUpload = (e) => {
+    setLoader(true);
+    const storageRef = imgref(storage, e.target.files[0].name + Date.now());
+
+    uploadBytes(storageRef, e.target.files[0]).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+      getDownloadURL(storageRef)
+        .then((downloadURL) => {
+          setImgUpload(downloadURL);
+        })
+        .then(() => {
+          setLoader(false);
+        });
     });
-    setNewPost("");
+  };
+
+  let handleNewPost = (item) => {
+    if (newPost) {
+      set(push(ref(db, "post")), {
+        post: newPost,
+        img: imgUpload,
+        PosterUid: item.userUid,
+        PosterName: item.username,
+        PosterPic: item.profile_picture,
+        PosterProfession: item.bio,
+      });
+      setNewPost("");
+      setImgUpload("");
+    } else {
+      toast.error("Please Write Something", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   let handleDelete = (item) => {
@@ -224,11 +270,35 @@ const Feed = () => {
                     placeholder="What’s on your mind?"
                     value={newPost}
                   ></textarea>
-                  <GoImage className="postUploadImg" />
-                  <BsSend
-                    onClick={() => handleNewPost(item)}
-                    className="newPostBtn"
-                  />
+                  <label>
+                    <input type="file" hidden onChange={hangleImageUpload} />
+                    <GoImage className="postUploadImg" />
+                  </label>
+
+                  {loader ? (
+                    <button className="loaderr">
+                      <ColorRing
+                        visible={true}
+                        height="40"
+                        width="40"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={[
+                          "#e15b64",
+                          "#f47e60",
+                          "#f8b26a",
+                          "#abbd81",
+                          "#849b87",
+                        ]}
+                      />
+                    </button>
+                  ) : (
+                    <BsSend
+                      onClick={() => handleNewPost(item)}
+                      className="newPostBtn"
+                    />
+                  )}
                 </div>
               </div>
             </>
@@ -263,12 +333,39 @@ const Feed = () => {
                       onChange={(e) => setPostUpdate({ post: e.target.value })}
                       value={postUpdate.post}
                     ></textarea>
-                    <button
-                      onClick={handlePostUpdate}
-                      className="updatePosttbtn"
-                    >
-                      Update
+                    <label>
+                      <input type="file" hidden onChange={hangleImageUpload} />
+                      <GoImage className="updateUploadImg" />
+                    </label>
+
+
+                    {loader ? (
+                    <button className="loaderr">
+                      <ColorRing
+                        visible={true}
+                        height="40"
+                        width="40"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={[
+                          "#e15b64",
+                          "#f47e60",
+                          "#f8b26a",
+                          "#abbd81",
+                          "#849b87",
+                        ]}
+                      />
                     </button>
+                  ) : (
+                    <button
+                    onClick={handlePostUpdate}
+                    className="updatePosttbtn"
+                  >
+                    Update
+                  </button>
+                  )}
+
                   </Typography>
                 </Box>
               </Modal>
@@ -292,6 +389,8 @@ const Feed = () => {
                   </div>
                 </div>
                 <p className="postText">{item.post}</p>
+                {item.img && <Image src={item.img} className="postImg" />}
+
                 {/* <Image src={ProfilePic} /> */}
               </div>
             </>
