@@ -1153,3 +1153,109 @@ Profife page Css
     line-height: 150%;
     color: #181818;
 }
+
+
+/* Group CSS part  */
+
+.grCreatebtn {
+    margin-top: 15px !important;
+    margin-bottom: 4px !important;
+    padding: 5px 20px !important;
+    background: #5F35F5 !important;
+    text-transform: capitalize !important;
+    font-size: 16px !important;
+  
+  }
+
+  .reqbtn {
+    width: 22%;
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+  
+  }
+
+.mygrBtnbox {
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    position: absolute;
+  }
+
+.req_profilepic {
+    width: 23%;
+  }
+
+  .reqAlistbtn {
+    text-transform: capitalize !important;
+    padding: 4px 15px !important;
+    margin: 4px !important;
+    background: green !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+  
+  }
+  
+  .reqlistDelbtn {
+    text-transform: capitalize !important;
+    padding: 4px 15px !important;
+    margin: 4px !important;
+    background: rgb(185, 31, 31) !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+  }
+  .greqlistDelbtn {
+    text-transform: capitalize !important;
+    padding: 4px 15px !important;
+    margin: 4px !important;
+    background: rgb(185, 31, 31) !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+  }
+  .joinedbtn {
+    right: 0;
+    padding: 4px 15px !important;
+    position: absolute !important;
+    background: green !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+  
+  }
+  .reqGRSendbtn {
+    right: 0;
+    padding: 4px 15px !important;
+    position: absolute !important;
+    background: #5F35F5 !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+  
+  }
+
+  .req_GR_profilepic {
+    margin-left: -30PX !important;
+    width: 70PX;
+    height: 70PX;
+    border-radius: 50%;
+  }
+
+  .frlistbtn {
+    right: 0;
+    padding: 4px 15px !important;
+    position: absolute !important;
+    background: #a51d2f !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+  
+  }
+  
+  .frlistbtn p {
+  
+    right: 0;
+    padding: 15px 0 !important;
+    text-transform: capitalize !important;
+    position: absolute !important;
+    background: rgb(185, 31, 31) !important;
+    font-size: 10px !important;
+    line-height: 0 !important;
+  
+  }

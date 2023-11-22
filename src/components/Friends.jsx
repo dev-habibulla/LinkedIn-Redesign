@@ -59,7 +59,6 @@ const Friends = () => {
     }
   };
 
-
   return (
     <div className="box">
       <h3>Friends</h3>

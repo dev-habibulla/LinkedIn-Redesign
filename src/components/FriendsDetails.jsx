@@ -7,21 +7,24 @@ import UserList from "./UserList";
 import Friends from "./Friends";
 import FriendRequest from "./FriendRequest";
 import BlockedUsers from "./BlockUser";
-
+import GroupList from "./GroupList";
+import MyGroup from "./MyGroups";
 
 const FriendsDetails = () => {
   return (
     <>
-    <div className="frDetailsBox">
-      <Friends />
-      <UserList />
-    
-    </div>
-    <div className="frDetailsBox">
-  
-      <FriendRequest />
-      <BlockedUsers />
-    </div>
+      <div className="frDetailsBox">
+        <Friends />
+        <UserList />
+      </div>
+      <div className="frDetailsBox">
+        <FriendRequest />
+        <BlockedUsers />
+      </div>
+      <div className="frDetailsBox">
+        <GroupList />
+        <MyGroup />
+      </div>
     </>
   );
 };

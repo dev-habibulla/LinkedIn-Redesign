@@ -36,7 +36,6 @@ const UserList = () => {
     });
   }, []);
 
-
   useEffect(() => {
     const friendRequestRef = ref(db, "friendRequest");
     onValue(friendRequestRef, (snapshot) => {
@@ -44,13 +43,11 @@ const UserList = () => {
 
       snapshot.forEach((iteam) => {
         arr.push(iteam.val().whoReceverID + iteam.val().whoSenderID);
-      
       });
 
       setReqList(arr);
     });
   }, []);
-
 
   useEffect(() => {
     const friendRef = ref(db, "friends");
@@ -87,7 +84,7 @@ const UserList = () => {
       whoReceverName: info.username,
       whoReceverID: info.userId,
       whoReceverPicture: info.profile_picture,
-    })
+    });
   };
 
   let handleReqCancle = (item) => {
@@ -98,14 +95,12 @@ const UserList = () => {
           fRQitem.val().whoSenderID === userInfo.uid &&
           fRQitem.val().whoReceverID === item.userId
         ) {
-          
           const frRQId = fRQitem.key;
           remove(ref(db, "friendRequest/" + frRQId));
         }
       });
     });
   };
-
 
   return (
     <div className="box">
@@ -114,7 +109,7 @@ const UserList = () => {
         <div className="list">
           <Image src={item.profile_picture} className="profilepic" />
           <h4>{item.username}</h4>
-  
+
           {reqList.includes(item.userId + userInfo.uid) ? (
             <Button
               onClick={() => handleReqCancle(item)}
@@ -129,12 +124,12 @@ const UserList = () => {
               pending
             </Button>
           ) : friendList.includes(item.userId + userInfo.uid) ||
-          friendList.includes(userInfo.uid + item.userId) ? (
+            friendList.includes(userInfo.uid + item.userId) ? (
             <Button className="frlistbtn" variant="contained" color="success">
               Friend
             </Button>
           ) : blockList.includes(item.userId + userInfo.uid) ||
-          blockList.includes(userInfo.uid + item.userId) ? (
+            blockList.includes(userInfo.uid + item.userId) ? (
             <Button className="frlistbtn" variant="contained" color="error">
               Block
             </Button>
@@ -151,8 +146,6 @@ const UserList = () => {
       ))}
     </div>
   );
-  
-
 };
 
 export default UserList;
