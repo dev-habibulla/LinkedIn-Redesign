@@ -207,6 +207,10 @@ const Msg = () => {
     };
   
 
+    let handleForward=(item)=>{
+        console.log(item);
+    }
+
     
   return (
     <div>
@@ -283,6 +287,7 @@ const Msg = () => {
               iteam.msg ? (
                 iteam.whoMsgSenderId == userInfo.uid ? (
                   <div className="sendmsg">
+                    <button onClick={()=>handleForward(iteam)}>forward</button>
                     <p className="msgSendText">{iteam.msg}</p>
                     <h6 className="msgTime">
                       {moment(iteam.date, "YYYYMMDD hh:mm").fromNow()}

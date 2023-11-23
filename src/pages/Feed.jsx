@@ -34,6 +34,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ColorRing } from "react-loader-spinner";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { FaRegComment } from "react-icons/fa6";
+import { FiSend } from "react-icons/fi";
+import { IoSendSharp } from "react-icons/io5";
 
 const style = {
   position: "absolute",
@@ -57,11 +61,19 @@ const Feed = () => {
   let [userProfileInfo, setUserProfileInfo] = useState([]);
   let userInfo = useSelector((state) => state.logedUser.value);
   let [postList, setPostList] = useState([]);
+  let [commentList, setCommentList] = useState([]);
   let [newPost, setNewPost] = useState("");
   let [imgUpload, setImgUpload] = useState("");
+  let [inputComment, setInputComment] = useState("");
   let [postUpdate, setPostUpdate] = useState({
     post: "",
   });
+
+  let [commentOpen, setCommentOpen] = useState(false);
+  let [likedList, setLikedList] = useState([]);
+  const getCommentCount = (postId) => {
+    return commentList.filter((item) => item.postId === postId).length;
+  };
 
   const [open, setOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -144,6 +156,28 @@ const Feed = () => {
     });
   }, [db]);
 
+  useEffect(() => {
+    const commentRef = ref(db, "comment");
+    onValue(commentRef, (snapshot) => {
+      let arr = [];
+      snapshot.forEach((item) => {
+        arr.push({ ...item.val(), commentId: item.key });
+      });
+      setCommentList(arr);
+    });
+  }, [db]);
+
+  useEffect(() => {
+    const likeRef = ref(db, "like");
+    onValue(likeRef, (snapshot) => {
+      let arr = [];
+      snapshot.forEach((item) => {
+        arr.push({ ...item.val(), likeId: item.key });
+      });
+      setLikedList(arr);
+    });
+  }, [db]);
+
   let handleLogout = () => {
     signOut(auth).then(() => {
       toast.success("Sign-out successful", {
@@ -222,6 +256,49 @@ const Feed = () => {
     setOpen(false);
   };
 
+  let handleLike = (item) => {
+    const likeRef = ref(db, "like");
+    const isLiked = likedList.some(
+      (like) => like.postId === item.postId && like.whoLikeId === userInfo.uid
+    );
+
+    if (!isLiked) {
+      set(push(ref(db, "like")), {
+        postId: item.postId,
+        liked: 1,
+        whoLikeId: userInfo.uid,
+        whoLikeName: userInfo.displayName,
+        whoLikePic: userInfo.photoURL,
+      });
+    } else {
+      const likeToRemove = likedList.find(
+        (like) => like.postId === item.postId && like.whoLikeId === userInfo.uid
+      );
+      if (likeToRemove) {
+        remove(ref(db, `like/${likeToRemove.likeId}`));
+      }
+    }
+  };
+
+  let handleComments = (item) => {
+    set(push(ref(db, "comment")), {
+      postId: item.postId,
+      comment: inputComment,
+      whoCommentId: userInfo.uid,
+      whoCommentName: userInfo.displayName,
+      whoCommentPic: userInfo.photoURL,
+    }).then(() => {
+      setInputComment("");
+    });
+    // console.log({
+    //   postId: item.postId,
+    //   comment: inputComment,
+    //   whoCommentId:userInfo.uid,
+    //   whoCommentName:userInfo.displayName,
+    //   whoCommentPic:userInfo.photoURL,
+    // });
+  };
+
   return (
     <div className="feedPart">
       {userProfileInfo.map((item) => (
@@ -235,8 +312,8 @@ const Feed = () => {
             </Link>
           </div>
           <Link to="/message" className="feedLink">
-        Message
-        </Link>
+            Message
+          </Link>
           <button onClick={handleLogout} className="feedBtn">
             Log Out
           </button>
@@ -308,97 +385,167 @@ const Feed = () => {
             </>
           ))}
 
-          {postList.map((item) => (
-            <>
-              <Modal
-                open={selectedPost === item}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
+          {postList.map(
+            (item) =>
+              item.post && (
+                <>
+                  <Modal
+                    open={selectedPost === item}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
                   >
-                    Edit Your Post
-                    <button
-                      onClick={() => handleDelete(item)}
-                      className="delPosttbtn"
-                    >
-                      Delete
-                    </button>
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    <textarea
-                      rows="4"
-                      cols="80"
-                      onChange={(e) => setPostUpdate({ post: e.target.value })}
-                      value={postUpdate.post}
-                    ></textarea>
-                    <label>
-                      <input type="file" hidden onChange={hangleImageUpload} />
-                      <GoImage className="updateUploadImg" />
-                    </label>
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Edit Your Post
+                        <button
+                          onClick={() => handleDelete(item)}
+                          className="delPosttbtn"
+                        >
+                          Delete
+                        </button>
+                      </Typography>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <textarea
+                          rows="4"
+                          cols="80"
+                          onChange={(e) =>
+                            setPostUpdate({ post: e.target.value })
+                          }
+                          value={postUpdate.post}
+                        ></textarea>
+                        <label>
+                          <input
+                            type="file"
+                            hidden
+                            onChange={hangleImageUpload}
+                          />
+                          <GoImage className="updateUploadImg" />
+                        </label>
 
+                        {loader ? (
+                          <button className="loaderr">
+                            <ColorRing
+                              visible={true}
+                              height="40"
+                              width="40"
+                              ariaLabel="blocks-loading"
+                              wrapperStyle={{}}
+                              wrapperClass="blocks-wrapper"
+                              colors={[
+                                "#e15b64",
+                                "#f47e60",
+                                "#f8b26a",
+                                "#abbd81",
+                                "#849b87",
+                              ]}
+                            />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={handlePostUpdate}
+                            className="updatePosttbtn"
+                          >
+                            Update
+                          </button>
+                        )}
+                      </Typography>
+                    </Box>
+                  </Modal>
 
-                    {loader ? (
-                    <button className="loaderr">
-                      <ColorRing
-                        visible={true}
-                        height="40"
-                        width="40"
-                        ariaLabel="blocks-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="blocks-wrapper"
-                        colors={[
-                          "#e15b64",
-                          "#f47e60",
-                          "#f8b26a",
-                          "#abbd81",
-                          "#849b87",
-                        ]}
-                      />
-                    </button>
-                  ) : (
-                    <button
-                    onClick={handlePostUpdate}
-                    className="updatePosttbtn"
-                  >
-                    Update
-                  </button>
-                  )}
+                  <div className="postBoxFeed">
+                    <div className="postEditDel">
+                      {item.PosterUid == userInfo.uid ? (
+                        <button
+                          onClick={() => handleOpen(item)}
+                          className="editPosttbtn"
+                        >
+                          Edit
+                        </button>
+                      ) : null}
+                    </div>
+                    <div className="postAdminInfo">
+                      <Image src={item.PosterPic} className="profileImg" />
+                      <div className="titleInfo">
+                        <h4>{item.PosterName}</h4>
+                        <p>{item.PosterProfession}</p>
+                      </div>
+                    </div>
+                    <p className="postText">{item.post}</p>
 
-                  </Typography>
-                </Box>
-              </Modal>
+                    <div className="postImageBox">
+                      {item.img && <Image src={item.img} className="postImg" />}
+                    </div>
 
-              <div className="postBoxFeed">
-                <div className="postEditDel">
-                  {item.PosterUid == userInfo.uid ? (
-                    <button
-                      onClick={() => handleOpen(item)}
-                      className="editPosttbtn"
-                    >
-                      Edit
-                    </button>
-                  ) : null}
-                </div>
-                <div className="postAdminInfo">
-                  <Image src={item.PosterPic} className="profileImg" />
-                  <div className="titleInfo">
-                    <h4>{item.PosterName}</h4>
-                    <p>{item.PosterProfession}</p>
+                    <div className="likeComents">
+                      <div className="likes">
+                        {likedList.some(
+                          (like) =>
+                            like.postId === item.postId &&
+                            like.whoLikeId === userInfo.uid
+                        ) ? (
+                          <AiFillLike
+                            onClick={() => handleLike(item)}
+                            className="likedd"
+                          />
+                        ) : (
+                          <AiOutlineLike onClick={() => handleLike(item)} />
+                        )}
+                        <p className="likeCount">{likedList.filter((like) => like.postId === item.postId).length}</p>
+                        <p>Likes</p>
+                        
+                      </div>
+
+                      <div
+                        onClick={() =>
+                          setCommentOpen((prevValue) => !prevValue)
+                        }
+                        className="Coments"
+                      >
+                        <FaRegComment />
+                        <p className="commentCount">
+                          {getCommentCount(item.postId)}
+                        </p>
+                        <p>Comments</p>
+                      </div>
+                    </div>
+
+                    {commentOpen && (
+                      <>
+                        {commentList.map(
+                          (citem) =>
+                            citem.postId == item.postId && (
+                              <div className="showComent">
+                                <Image src={citem.whoCommentPic} />
+                                <div className="comentsBox">
+                                  <h4>{citem.whoCommentName}</h4>
+                                  <p>{citem.comment}</p>
+                                </div>
+                              </div>
+                            )
+                        )}
+                        <div className="inputComents">
+                          <input
+                            onChange={(e) => setInputComment(e.target.value)}
+                            className="inputComment"
+                            type="text"
+                            value={inputComment}
+                          />
+                          <IoSendSharp
+                            onClick={() => handleComments(item)}
+                            className="submitComentbtn"
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
-                </div>
-                <p className="postText">{item.post}</p>
-                {item.img && <Image src={item.img} className="postImg" />}
-
-                {/* <Image src={ProfilePic} /> */}
-              </div>
-            </>
-          ))}
+                </>
+              )
+          )}
         </div>
       </div>
     </div>
