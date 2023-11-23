@@ -125,7 +125,7 @@ const UserList = () => {
             </Button>
           ) : friendList.includes(item.userId + userInfo.uid) ||
             friendList.includes(userInfo.uid + item.userId) ? (
-            <Button className="frlistbtn" variant="contained" color="success">
+            <Button className="listbtn" variant="contained" color="success">
               Friend
             </Button>
           ) : blockList.includes(item.userId + userInfo.uid) ||
@@ -136,7 +136,7 @@ const UserList = () => {
           ) : (
             <Button
               onClick={() => handleFriendRequestSend(item)}
-              className="frlistbtn"
+              className="addFrbtn"
               variant="contained"
             >
               Add

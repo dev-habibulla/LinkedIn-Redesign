@@ -50,21 +50,24 @@ const FriendRequest = () => {
         <div className="list">
           <Image src={item.whoSenderPicture} className="profilepic" />
           <h4>{item.whoSenderName}</h4>
+          <div className="reqbtn">
           <Button
             onClick={() => handleAccept(item)}
-            className="frlistbtn"
+            className="reqAlistbtn"
             variant="contained"
           >
             Accept
           </Button>
           <Button
             onClick={() => handleDelete(item)}
-            className="frlistbtn"
+            className="reqlistDelbtn"
             variant="contained"
             color="error"
           >
             Delete
           </Button>
+          </div>
+         
         </div>
       ))}
     </div>

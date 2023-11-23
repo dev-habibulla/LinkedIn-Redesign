@@ -12,12 +12,13 @@
 }
 
 
-.loaderr{
-   
+.loaderr {
+
     border-radius: 50%;
     border: none;
     background: transparent;
 }
+
 .text_container {
     display: flex;
     flex-direction: column;
@@ -1157,6 +1158,17 @@ Profife page Css
 
 /* Group CSS part  */
 
+.addFrbtn {
+
+    right: 0;
+    padding: 4px 15px !important;
+    position: absolute !important;
+    background: #0077B5 !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+
+}
+
 .grCreatebtn {
     margin-top: 15px !important;
     margin-bottom: 4px !important;
@@ -1164,55 +1176,96 @@ Profife page Css
     background: #5F35F5 !important;
     text-transform: capitalize !important;
     font-size: 16px !important;
-  
-  }
 
-  .reqbtn {
+}
+
+.reqbtn {
     width: 22%;
     /* position: absolute; */
     display: flex;
     flex-direction: column;
-  
-  }
+
+}
 
 .mygrBtnbox {
     display: flex;
     flex-direction: column;
     right: 0;
     position: absolute;
-  }
+}
 
 .req_profilepic {
     width: 23%;
-  }
+}
 
-  .reqAlistbtn {
+.reqAlistbtn {
     text-transform: capitalize !important;
     padding: 4px 15px !important;
     margin: 4px !important;
     background: green !important;
     font-size: 14px !important;
     justify-content: center !important;
-  
-  }
-  
-  .reqlistDelbtn {
+
+}
+
+.reqlist:last-child {
+    border-bottom: 0;
+
+}
+
+.reqlist {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    /* column-gap: 15px; */
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin: 10px 0;
+}
+
+.req_profilepic {
+    width: 23%;
+}
+
+.reqlist .profilepic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+
+
+.reqlistDelbtn {
     text-transform: capitalize !important;
     padding: 4px 15px !important;
     margin: 4px !important;
     background: rgb(185, 31, 31) !important;
     font-size: 14px !important;
     justify-content: center !important;
-  }
-  .greqlistDelbtn {
+}
+
+.greqlistDelbtn {
     text-transform: capitalize !important;
     padding: 4px 15px !important;
     margin: 4px !important;
     background: rgb(185, 31, 31) !important;
     font-size: 14px !important;
     justify-content: center !important;
-  }
-  .joinedbtn {
+}
+
+.joinedbtn {
+    right: 0;
+    padding: 4px 15px !important;
+    position: absolute !important;
+    background: green !important;
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+
+}
+
+.listbtn {
+
     right: 0;
     padding: 4px 15px !important;
     position: absolute !important;
@@ -1221,35 +1274,36 @@ Profife page Css
     font-size: 14px !important;
   
   }
-  .reqGRSendbtn {
+
+.reqGRSendbtn {
     right: 0;
     padding: 4px 15px !important;
     position: absolute !important;
     background: #5F35F5 !important;
     text-transform: capitalize !important;
     font-size: 14px !important;
-  
-  }
 
-  .req_GR_profilepic {
+}
+
+.req_GR_profilepic {
     margin-left: -30PX !important;
     width: 70PX;
     height: 70PX;
     border-radius: 50%;
-  }
+}
 
-  .frlistbtn {
+.frlistbtn {
     right: 0;
     padding: 4px 15px !important;
     position: absolute !important;
     background: #a51d2f !important;
     text-transform: capitalize !important;
     font-size: 14px !important;
-  
-  }
-  
-  .frlistbtn p {
-  
+
+}
+
+.frlistbtn p {
+
     right: 0;
     padding: 15px 0 !important;
     text-transform: capitalize !important;
@@ -1257,5 +1311,224 @@ Profife page Css
     background: rgb(185, 31, 31) !important;
     font-size: 10px !important;
     line-height: 0 !important;
+
+}
+
+
+/* Message CSS /////////////////////////////*/
+/* Message CSS/////////////////////// */
+/* Message CSS///////////////////////// */
+/* Message CSS ////////////////////////*/
+/* Message CSS ////////////////////*/
+/* Message CSS/////////////////////////// */
+/* Message CSS//////////////////////////////////// */
+
+
+.msgbox {
+    background: #fff;
+    height: 100vh;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  }
   
+  .containermsg {
+    height: 80vh;
+    overflow-y: scroll;
+  }
+  
+  .sendmsg {
+    margin: 20px 0;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .msgSendText {
+    background: #5F35F5;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .receivedmsg {
+    margin: 20px 0;
+  }
+  
+  .msgRecText {
+    background: #f1f1f1;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  .sendimg {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+  }
+  
+  .sendimg img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .sendimg .imgbox {
+    background: #5F35F5;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 7px;
+  }
+  
+  .sendimg .__react_modal_image__medium_img {
+    width: auto;
+    height: auto;
+  }
+  
+  .receivedimg .__react_modal_image__medium_img {
+    width: auto;
+    height: auto;
+  }
+  
+  .receivedimg {
+    margin: 20px 0;
+  }
+  
+  .receivedimg img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .receivedimg .imgbox {
+    background: #f1f1f1;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 7px;
+  }
+  
+  .sendaudio {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+  }
+  
+  .sendvideo {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+  }
+  
+  .receiveaudio {
+    margin: 20px 0;
+  }
+  
+  .receivevideo {
+    margin: 20px 0;
+  }
+  
+  .msgField {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    padding-top: 40px;
+  }
+  
+  .msgField .MuiTextField-root {
+    width: 80%;
+  }
+  
+  .sendContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .emjibtn {
+    position: absolute;
+    right: 85px;
+  }
+  
+  .imgSendbtn {
+    position: absolute;
+    top: 8px;
+    right: 120px;
+  }
+  
+  /* .audioSendbtn {
+    position: absolute;
+    top: 60px;
+    right: 319px;
+  } */
+  
+  /* .audio-recorder-mic {
+  
+    height: 16px !important;
+    padding: 8px !important;
+  }
+  
+  .audio-recorder {
+  
+    width: 24px !important;
+  
+  } */
+  
+  .sendbtn {
+    margin-left: 10px !important;
+    padding: 4px 15px !important;
+    background: #5F35F5 !important;
+    text-transform: capitalize !important;
+  }
+  
+  .emojiholder {
+    position: absolute;
+    top: -420px;
+    right: 180px;
+  }
+  
+  .activeChatData {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  
+  .activeChatData h4 {
+    padding-left: 20px;
+  }
+  
+  .activeChatData .activeChatImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+  }
+  
+  .msgTime {
+    padding-top: 3px;
+    font-weight: 400;
+    font-size: 10px;
+    color: hwb(0 10% 90% / 0.43);
+  
+  }
+  
+  .msgImgTime {
+    padding-top: 3px;
+    font-weight: 400;
+    font-size: 30px;
+    color: hwb(0 4% 0%)
   }

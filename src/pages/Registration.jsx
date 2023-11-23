@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "./../components/Images";
 import Logo from "../assets/Logo.png";
 import TextField from "@mui/material/TextField";
@@ -15,11 +15,22 @@ import {
 } from "firebase/auth";
 import { getDatabase, ref, set, push } from "firebase/database";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logedUser } from "../slices/userSlice";
 
 const Registration = () => {
   const auth = getAuth();
   const db = getDatabase();
   let navigate = useNavigate();
+  
+  let userInfo = useSelector((state) => state.logedUser.value);
+
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/feed");
+    }
+  }, []);
 
   let [fromData, setFromData] = useState({
     fullName: "",

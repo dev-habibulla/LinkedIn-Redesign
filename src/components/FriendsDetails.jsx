@@ -5,10 +5,10 @@ import Image from "./Images";
 import Grid from "@mui/material/Grid";
 import UserList from "./UserList";
 import Friends from "./Friends";
-import FriendRequest from "./FriendRequest";
-import BlockedUsers from "./BlockUser";
-import GroupList from "./GroupList";
 import MyGroup from "./MyGroups";
+import FriendRequest from "./FriendRequest"
+import BlockedUsers from "./BlockUser"
+import GroupList from "./GroupList"
 
 const FriendsDetails = () => {
   return (

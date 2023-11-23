@@ -15,6 +15,10 @@ import Feed from "./pages/Feed";
 import ExperienceForm from './components/Expreance';
 import Educations from './components/Educations';
 import BoxTest from './components/BoxTest';
+import Message from "./pages/Message";
+import Msg from "./components/Msg";
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +28,8 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/ex" element={<BoxTest />} />
+      <Route path="/message" element={<Message />} />
+      <Route path="/de" element={<Msg />} />
     </Route>
   )
 );

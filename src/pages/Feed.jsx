@@ -227,12 +227,16 @@ const Feed = () => {
       {userProfileInfo.map((item) => (
         <div className="feedLogo">
           <Image src={Logo} className="logoImg" />
+
           <div className="profileNAmePic">
             <Link to="/profile" className="profileNAmePic">
               <Image src={item.profile_picture} />
               <p>{item.username}</p>
             </Link>
           </div>
+          <Link to="/message" className="feedLink">
+        Message
+        </Link>
           <button onClick={handleLogout} className="feedBtn">
             Log Out
           </button>

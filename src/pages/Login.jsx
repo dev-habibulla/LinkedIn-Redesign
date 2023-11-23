@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "./../components/Images";
 import Logo from "../assets/Logo.png";
 import TextField from "@mui/material/TextField";
@@ -21,6 +21,13 @@ const Login = () => {
   let [btnLoad, setBtnLoad] = useState(false);
 
   let userInfo = useSelector((state) => state.logedUser.value);
+
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/feed");
+    }
+  }, []);
 
   let [fromData, setFromData] = useState({
     email: "",

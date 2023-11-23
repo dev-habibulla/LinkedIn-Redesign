@@ -7,8 +7,6 @@ import Image from "./../components/Images";
 import Button from "@mui/material/Button";
 import { BiEdit } from "react-icons/bi";
 import { FaLocationArrow } from "react-icons/fa";
-import ProfileDetails from "../components/ProfileDetails";
-import FriendsDetails from "../components/FriendsDetails";
 import PostsList from "../components/PostsList";
 import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
@@ -30,6 +28,8 @@ import {
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import ProfileDetails from "./../components/ProfileDetails";
+import FriendsDetails from "./../components/FriendsDetails";
 
 const style = {
   position: "absolute",
@@ -156,6 +156,9 @@ const Profile = () => {
         <Image src={Logo} className="logoImg" />
         <Link to="/feed" className="feedLink">
           Feed
+        </Link>
+        <Link to="/message" className="feedLink">
+          Message
         </Link>
         <button onClick={handleLogout} className="feedBtn">
           Log Out
