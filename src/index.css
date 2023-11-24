@@ -1537,11 +1537,42 @@ Profife page Css
     color: hwb(0 4% 0%)
 }
 
+.fMsg {
+    background: transparent;
+    border: none;
+    color: #c4c4c4;
+    font-size: 17px;
+}
+
+.forwardBox {
+    
+    border-radius: 20px;
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
+}
+
+.forBtn{
+   
+        border: none;
+        padding: 5px 10px;
+        background: #0077B5;
+        color: #fff;
+        border-radius: 4px;
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: 500;
+}
 
 /*/////////////////////////////       Comment CSS        ///////////////////////  */
 /*/////////////////////////////       Comment CSS        ///////////////////////  */
 /*/////////////////////////////       Comment CSS        ///////////////////////  */
 /*/////////////////////////////       Comment CSS        ///////////////////////  */
+
 
 
 .likeComents {
@@ -1566,8 +1597,9 @@ Profife page Css
 .likeCount {
     margin-left: 5px;
     font-weight: 600;
-    
+
 }
+
 .likes p {
     padding-top: 2px;
     padding-left: 3px;
@@ -1580,6 +1612,7 @@ Profife page Css
     font-size: 20px;
     padding: 15px;
 }
+
 .commentCount {
     margin-left: 10px;
     font-weight: 600 !important;
