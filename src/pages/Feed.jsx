@@ -4,7 +4,6 @@ import Cover from "../assets/cover.png";
 import CoverLogo from "../assets/coverLogo.png";
 import ProfilePic from "../assets/profile.jpg";
 import Image from "./../components/Images";
-import { Link } from "react-router-dom";
 import { BsSend } from "react-icons/bs";
 import { GoImage } from "react-icons/go";
 import { getAuth, signOut } from "firebase/auth";
@@ -12,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logedUser } from "../slices/userSlice";
+import { Link } from "react-router-dom";
 import {
   getDatabase,
   ref,
@@ -305,18 +305,27 @@ const Feed = () => {
         <div className="feedLogo">
           <Image src={Logo} className="logoImg" />
 
+          <div>
+            <Link to="/feed" className="feedLink">
+              Home
+            </Link>
+            <Link to="/profile" className="feedLink">
+              Profile
+            </Link>
+            <Link to="/message" className="feedLink">
+              Message
+            </Link>
+          </div>
+
           <div className="profileNAmePic">
             <Link to="/profile" className="profileNAmePic">
               <Image src={item.profile_picture} />
               <p>{item.username}</p>
             </Link>
+            <button onClick={handleLogout} className="feedBtn">
+              Log Out
+            </button>
           </div>
-          <Link to="/message" className="feedLink">
-            Message
-          </Link>
-          <button onClick={handleLogout} className="feedBtn">
-            Log Out
-          </button>
         </div>
       ))}
 
@@ -495,9 +504,14 @@ const Feed = () => {
                         ) : (
                           <AiOutlineLike onClick={() => handleLike(item)} />
                         )}
-                        <p className="likeCount">{likedList.filter((like) => like.postId === item.postId).length}</p>
+                        <p className="likeCount">
+                          {
+                            likedList.filter(
+                              (like) => like.postId === item.postId
+                            ).length
+                          }
+                        </p>
                         <p>Likes</p>
-                        
                       </div>
 
                       <div

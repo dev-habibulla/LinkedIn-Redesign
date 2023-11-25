@@ -136,6 +136,7 @@
 
 .feedLink {
     font-family: 'Barlow', sans-serif;
+    margin: 0px 10px;
     border: none;
     text-decoration: none;
     padding: 10px 25px;
@@ -146,6 +147,18 @@
     font-size: 14px;
     font-weight: 500;
 }
+/* .feedtopBtn {
+    font-family: 'Barlow', sans-serif;
+    margin: 0px 10px;
+    border: none;
+    text-decoration: none;
+    padding: 10px 25px;
+    color: #181818;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+} */
 
 
 
@@ -895,6 +908,7 @@ Profife page Css
 }
 
 .profileNAmePic {
+    margin: 0 10px;
     text-decoration: none;
     display: flex;
     align-items: center;

@@ -152,18 +152,33 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <div className="logo">
-        <Image src={Logo} className="logoImg" />
-        <Link to="/feed" className="feedLink">
-          Feed
-        </Link>
-        <Link to="/message" className="feedLink">
-          Message
-        </Link>
-        <button onClick={handleLogout} className="feedBtn">
-          Log Out
-        </button>
-      </div>
+   {userProfileInfo.map((item) => (
+        <div className="feedLogo">
+          <Image src={Logo} className="logoImg" />
+
+          <div>
+            <Link to="/feed" className="feedLink">
+              Home
+            </Link>
+            <Link to="/profile" className="feedLink">
+              Profile
+            </Link>
+            <Link to="/message" className="feedLink">
+              Message
+            </Link>
+          </div>
+
+          <div className="profileNAmePic">
+            <Link to="/profile" className="profileNAmePic">
+              <Image src={item.profile_picture} />
+              <p>{item.username}</p>
+            </Link>
+            <button onClick={handleLogout} className="feedBtn">
+              Log Out
+            </button>
+          </div>
+        </div>
+      ))}
 
       <div className="profileContent">
         <div className="cover">
