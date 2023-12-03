@@ -147,6 +147,7 @@
     font-size: 14px;
     font-weight: 500;
 }
+
 /* .feedtopBtn {
     font-family: 'Barlow', sans-serif;
     margin: 0px 10px;
@@ -213,6 +214,7 @@ Profife page Css
 }
 
 .modalinputcss {
+    margin: 10px 0 !important;
     width: 99% !important;
 }
 
@@ -1559,7 +1561,7 @@ Profife page Css
 }
 
 .forwardBox {
-    
+
     border-radius: 20px;
     margin: 10px;
     padding: 20px;
@@ -1570,16 +1572,16 @@ Profife page Css
     box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.2);
 }
 
-.forBtn{
-   
-        border: none;
-        padding: 5px 10px;
-        background: #0077B5;
-        color: #fff;
-        border-radius: 4px;
-        text-transform: capitalize;
-        font-size: 12px;
-        font-weight: 500;
+.forBtn {
+
+    border: none;
+    padding: 5px 10px;
+    background: #0077B5;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 /*/////////////////////////////       Comment CSS        ///////////////////////  */

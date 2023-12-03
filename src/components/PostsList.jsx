@@ -70,7 +70,6 @@ const PostsList = () => {
   };
 
   let handlePostUpdate = (item) => {
-
     if (postUpdate.post) {
       update(ref(db, "post/" + item.postId), {
         post: postUpdate.post,
@@ -167,7 +166,9 @@ const PostsList = () => {
               </div>
             </div>
             <p className="postText">{item.post}</p>
-            {/* <Image src={ProfilePic} /> */}
+            <div className="postImageBox">
+              {item.img && <Image src={item.img} className="postImg" />}
+            </div>
           </div>
         </>
       ))}

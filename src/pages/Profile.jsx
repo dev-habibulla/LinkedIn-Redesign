@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef,useEffect, createRef } from "react";
 import Logo from "../assets/Logo.png";
 import Cover from "../assets/cover.png";
 import ProfilePic from "../assets/profile.jpg";
@@ -30,6 +30,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import ProfileDetails from "./../components/ProfileDetails";
 import FriendsDetails from "./../components/FriendsDetails";
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
 
 const style = {
   position: "absolute",
@@ -65,6 +67,22 @@ const Profile = () => {
   };
   const handleClose = () => setOpen(false);
 
+
+  const [imgOpen, setImgOpen] = React.useState(false);
+  const handleprofifleImgOpen = () => setImgOpen(true);
+  const handleProfifleImgClose = () => setImgOpen(false);
+
+  
+
+  const defaultSrc = "https://firebasestorage.googleapis.com/v0/b/linkedin-redesign-ae4ef.appspot.com/o/Screenshot_4.png1700151365336?alt=media&token=db7ba60c-a591-47c3-a8ce-a2b72612b3fd";
+
+
+  const [image, setImage] = useState(defaultSrc);
+  const [cropData, setCropData] = useState("#");
+  const cropperRef = createRef();
+
+
+
   let [profileUpdateFromData, setProfileUpdateFromData] = useState({
     name: "",
     location: "",
@@ -86,12 +104,14 @@ const Profile = () => {
     setShowPostLists(false);
     setShowFriendsDetails(false);
   };
+
   let handleFriendsDetails = () => {
     setActiveTab("friends");
     setShowProfile(false);
     setShowPostLists(false);
     setShowFriendsDetails(true);
   };
+
   let handlePostList = () => {
     setActiveTab("posts");
     setShowProfile(false);
@@ -132,7 +152,7 @@ const Profile = () => {
     });
   };
 
-  const handleChange = (e) => {
+  let handleChange = (e) => {
     setProfileUpdateFromData({
       ...profileUpdateFromData,
       [e.target.name]: e.target.value,
@@ -150,9 +170,42 @@ const Profile = () => {
     setOpen(false);
   };
 
+
+
+  let onChange = (e) => {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
+  const getCropData = () => {
+    if (typeof cropperRef.current?.cropper !== "undefined") {
+      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+    }
+  };
+
+
+  let handleCropData = () => {
+    console.log("4555555",image);
+   
+    // getCropData();
+  };
+
+
+
+
   return (
     <div className="profile">
-   {userProfileInfo.map((item) => (
+      {userProfileInfo.map((item) => (
         <div className="feedLogo">
           <Image src={Logo} className="logoImg" />
 
@@ -192,8 +245,46 @@ const Profile = () => {
           <div className="aboutPicContent">
             {userProfileInfo.map((item) => (
               <>
-                <div className="profilePic">
+
+<Modal
+        open={imgOpen}
+        onClose={handleProfifleImgClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          profile picture preview
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <input type="file" onChange={onChange} />
+            <Cropper
+              ref={cropperRef}
+              style={{ height: 400, width: "100%" }}
+              zoomTo={0.5}
+              initialAspectRatio={1}
+              preview=".img-preview"
+              src={image}
+              viewMode={1}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
+              background={false}
+              responsive={true}
+              autoCropArea={1}
+              guides={true}
+            />
+
+            <Button onClick={handleCropData}>Update</Button>
+          </Typography>
+        
+        </Box>
+      </Modal>
+
+
+                <div onClick={handleprofifleImgOpen} className="profilePic">
+
                   <Image src={item.profile_picture} />
+        
                 </div>
                 <div className="profileNameAbout">
                   <button
