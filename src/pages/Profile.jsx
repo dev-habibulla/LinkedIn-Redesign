@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect, createRef } from "react";
+import React, { useState, useRef, useEffect, createRef } from "react";
 import Logo from "../assets/Logo.png";
 import Cover from "../assets/cover.png";
 import ProfilePic from "../assets/profile.jpg";
@@ -18,8 +18,17 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 
 import {
+  getStorage,
+  ref as storef,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
+
+import {
   getDatabase,
   ref,
+  // ref as secondref,
+  set,
   onValue,
   child,
   push,
@@ -46,8 +55,12 @@ const style = {
 };
 
 const Profile = () => {
+  let userInfo = useSelector((state) => state.logedUser.value);
   const auth = getAuth();
   const db = getDatabase();
+  const storage = getStorage();
+  const storageRef = storef(storage, userInfo.uid);
+  const storageCoverRef = storef(storage, userInfo.uid + 1);
   let navigate = useNavigate();
   let dispatch = useDispatch();
   let [showProfile, setShowProfile] = useState(true);
@@ -67,21 +80,20 @@ const Profile = () => {
   };
   const handleClose = () => setOpen(false);
 
-
   const [imgOpen, setImgOpen] = React.useState(false);
   const handleprofifleImgOpen = () => setImgOpen(true);
   const handleProfifleImgClose = () => setImgOpen(false);
 
-  
+  const [coverOpen, setCoverOpen] = React.useState(false);
+  const handleCoverPicOpen = () => setCoverOpen(true);
+  const handleCoverClose = () => setCoverOpen(false);
 
-  const defaultSrc = "https://firebasestorage.googleapis.com/v0/b/linkedin-redesign-ae4ef.appspot.com/o/Screenshot_4.png1700151365336?alt=media&token=db7ba60c-a591-47c3-a8ce-a2b72612b3fd";
-
+  const defaultSrc =
+    "https://firebasestorage.googleapis.com/v0/b/linkedin-redesign-ae4ef.appspot.com/o/Screenshot_4.png1700151365336?alt=media&token=db7ba60c-a591-47c3-a8ce-a2b72612b3fd";
 
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState("#");
   const cropperRef = createRef();
-
-
 
   let [profileUpdateFromData, setProfileUpdateFromData] = useState({
     name: "",
@@ -89,8 +101,6 @@ const Profile = () => {
     bio: "",
     about: "",
   });
-
-  let userInfo = useSelector((state) => state.logedUser.value);
 
   useEffect(() => {
     if (!userInfo) {
@@ -160,17 +170,35 @@ const Profile = () => {
   };
 
   let handleProfileUpdate = (item) => {
-    update(ref(db, "users/" + item.userUid), {
+    update(ref(db, "users/" + userInfo.uid), {
       username: profileUpdateFromData.name,
       location: profileUpdateFromData.location,
       bio: profileUpdateFromData.bio,
       about: profileUpdateFromData.about,
+    }).then(() => {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...userInfo,
+          username: profileUpdateFromData.name,
+          location: profileUpdateFromData.location,
+          bio: profileUpdateFromData.bio,
+          about: profileUpdateFromData.about,
+        })
+      );
+      dispatch(
+        logedUser({
+          ...userInfo,
+          username: profileUpdateFromData.name,
+          location: profileUpdateFromData.location,
+          bio: profileUpdateFromData.bio,
+          about: profileUpdateFromData.about,
+        })
+      );
     });
 
     setOpen(false);
   };
-
-
 
   let onChange = (e) => {
     e.preventDefault();
@@ -190,18 +218,84 @@ const Profile = () => {
   const getCropData = () => {
     if (typeof cropperRef.current?.cropper !== "undefined") {
       setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+
+      // Data URL string
+      const message2 = cropperRef.current?.cropper
+        .getCroppedCanvas()
+        .toDataURL();
+      uploadString(storageRef, message2, "data_url").then((snapshot) => {
+        console.log("Uploaded a data_url string!");
+      });
+
+      uploadString(storageRef, message2, "data_url").then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          set(ref(db, "users/" + userInfo.uid), {
+            username: userInfo.displayName,
+            email: userInfo.email,
+            location: userInfo.location,
+            bio: userInfo.bio,
+            about: userInfo.about,
+            coverPic: userInfo.coverPic,
+            profile_picture: downloadURL,
+          }).then(() => {
+            console.log("done");
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...userInfo, photoURL: downloadURL })
+            );
+            dispatch(logedUser({ ...userInfo, photoURL: downloadURL }));
+            setImgOpen(false);
+          });
+        });
+      });
     }
   };
 
+  const getCoverCropData = () => {
+    if (typeof cropperRef.current?.cropper !== "undefined") {
+      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
 
-  let handleCropData = () => {
-    console.log("4555555",image);
-   
-    // getCropData();
+      // Data URL string
+      const message2 = cropperRef.current?.cropper
+        .getCroppedCanvas()
+        .toDataURL();
+      uploadString(storageCoverRef, message2, "data_url").then((snapshot) => {
+        console.log("Uploaded a data_url string!");
+      });
+
+      uploadString(storageCoverRef, message2, "data_url").then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          set(ref(db, "users/" + userInfo.uid), {
+            username: userInfo.displayName,
+            email: userInfo.email,
+            location: userInfo.location,
+            bio: userInfo.bio,
+            about: userInfo.about,
+            profile_picture: userInfo.photoURL,
+            coverPic: downloadURL,
+          }).then(() => {
+            console.log("done");
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ ...userInfo, coverPic: downloadURL })
+            );
+            dispatch(logedUser({ ...userInfo, coverPic: downloadURL }));
+            setCoverOpen(false);
+          });
+        });
+      });
+    }
   };
 
-
-
+  let handleCropData = () => {
+    getCropData();
+  };
+  let handleCoverCropData = () => {
+    console.log("aci");
+    getCoverCropData();
+  };
 
   return (
     <div className="profile">
@@ -235,56 +329,86 @@ const Profile = () => {
 
       <div className="profileContent">
         <div className="cover">
-          <Image src={Cover} />
-          <button className="editCoverbtn">
+          <Image src={userInfo.coverPic} />
+          <button onClick={handleCoverPicOpen} className="editCoverbtn">
             <BiEdit className="editicon" />
-            Edit profile
+            Update Cover
           </button>
+
+          <Modal
+            open={coverOpen}
+            onClose={handleCoverClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <input type="file" onChange={onChange} />
+                <Cropper
+                  ref={cropperRef}
+                  style={{ height: 400, width: "100%" }}
+                  zoomTo={0.5}
+                  initialAspectRatio={1}
+                  preview=".img-preview"
+                  src={image}
+                  viewMode={1}
+                  minCropBoxHeight={10}
+                  minCropBoxWidth={10}
+                  background={false}
+                  responsive={true}
+                  autoCropArea={1}
+                  guides={true}
+                />
+
+                <Button onClick={handleCoverCropData}>Update</Button>
+              </Typography>
+            </Box>
+          </Modal>
         </div>
         <div className="profileInfo">
           <div className="aboutPicContent">
             {userProfileInfo.map((item) => (
               <>
+                <Modal
+                  open={imgOpen}
+                  onClose={handleProfifleImgClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography
+                      id="modal-modal-title"
+                      variant="h6"
+                      component="h2"
+                    >
+                       <h4 className="previewText"> profile picture preview</h4>
+            <div className="img-preview" />
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      <input type="file" onChange={onChange} />
+                      <Cropper
+                        ref={cropperRef}
+                        style={{ height: 400, width: "100%" }}
+                        zoomTo={0.5}
+                        initialAspectRatio={1}
+                        preview=".img-preview"
+                        src={image}
+                        viewMode={1}
+                        minCropBoxHeight={10}
+                        minCropBoxWidth={10}
+                        background={false}
+                        responsive={true}
+                        autoCropArea={1}
+                        guides={true}
+                      />
 
-<Modal
-        open={imgOpen}
-        onClose={handleProfifleImgClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          profile picture preview
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <input type="file" onChange={onChange} />
-            <Cropper
-              ref={cropperRef}
-              style={{ height: 400, width: "100%" }}
-              zoomTo={0.5}
-              initialAspectRatio={1}
-              preview=".img-preview"
-              src={image}
-              viewMode={1}
-              minCropBoxHeight={10}
-              minCropBoxWidth={10}
-              background={false}
-              responsive={true}
-              autoCropArea={1}
-              guides={true}
-            />
-
-            <Button onClick={handleCropData}>Update</Button>
-          </Typography>
-        
-        </Box>
-      </Modal>
-
+                      <Button onClick={handleCropData}>Update</Button>
+                    </Typography>
+                  </Box>
+                </Modal>
 
                 <div onClick={handleprofifleImgOpen} className="profilePic">
-
                   <Image src={item.profile_picture} />
-        
                 </div>
                 <div className="profileNameAbout">
                   <button

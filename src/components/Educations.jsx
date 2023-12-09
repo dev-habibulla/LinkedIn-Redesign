@@ -94,6 +94,7 @@ const Educations = () => {
   };
 
   let handleAddEducation = () => {
+    console.log("2222",education.dateInput);
     if (
       education.institute &&
       education.degree &&
@@ -237,6 +238,15 @@ const Educations = () => {
                 label="End Year"
                 value={education.endDate}
               />
+              <input
+                type="date"
+                onChange={handleChange}
+                id="dateInput"
+                name="dateInput"
+                pattern="\d{4}-\d{2}-\d{2}"
+                required
+                value={education.dateInput}
+              ></input>
 
               <TextField
                 onChange={handleChange}

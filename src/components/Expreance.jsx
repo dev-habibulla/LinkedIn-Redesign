@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import moment from "moment/moment";
 import { toast } from "react-toastify";
 import {
   getDatabase,
@@ -37,18 +38,23 @@ function ExperienceForm() {
   let [experienceList, setExperienceList] = useState([]);
   let userInfo = useSelector((state) => state.logedUser.value);
 
+  let [exDelId, setExDelId] = useState("");
+
   const [open, setOpen] = useState(false);
   const handleOpen = (item) => {
     setOpen(true);
+    
+    setExDelId(item.experienceId);
     setExperience({
       title: item.title,
       company: item.company,
       location: item.location,
       startDate: item.startDate,
-      endDate: item.endDate,
       description: item.description,
+      experienceId: item.experienceId,
     });
   };
+
   const handleClose = () => setOpen(false);
 
   const [addModalopen, setAddModalopen] = useState(false);
@@ -74,7 +80,6 @@ function ExperienceForm() {
     company: "",
     location: "",
     startDate: "",
-    endDate: "",
     description: "",
   });
 
@@ -91,7 +96,6 @@ function ExperienceForm() {
       experience.company &&
       experience.location &&
       experience.startDate &&
-      experience.endDate &&
       experience.description
     ) {
       set(push(ref(db, "experienceList")), {
@@ -100,7 +104,6 @@ function ExperienceForm() {
         company: experience.company,
         location: experience.location,
         startDate: experience.startDate,
-        endDate: experience.endDate,
         description: experience.description,
       });
       toast.success("Add Successful", {
@@ -144,7 +147,7 @@ function ExperienceForm() {
       experience.company &&
       experience.location &&
       experience.startDate &&
-      experience.endDate &&
+      experience.experienceId &&
       experience.description
     ) {
       update(ref(db, "experienceList/" + item.experienceId), {
@@ -152,7 +155,6 @@ function ExperienceForm() {
         company: experience.company,
         location: experience.location,
         startDate: experience.startDate,
-        endDate: experience.endDate,
         description: experience.description,
       });
       toast.success("Update Successful", {
@@ -189,14 +191,43 @@ function ExperienceForm() {
     }
   };
 
+
+   // Move useEffect hook outside the function
+  //  useEffect(() => {
+  //   let deleteId;
+
+  //   deleteId = exDelId;
+    
+
+  //   if (!deleteId) {
+
+  //     setExDelId("");
+  //   }
+  // }, [exDelId]);
+
+
+
   let handleExperienceDelete = (item) => {
-    remove(ref(db, "experienceList/" + item.experienceId));
+
+
+    
+
+    // Watch for changes in the fMsg state
+    console.log(item);
+    console.log(item.title);
+    console.log(exDelId);
+
+    // console.log(item);
+    // console.log(item.title);
+    // console.log(localFMsg); // Use the local variable
+
+   
+    remove(ref(db, "experienceList/" + exDelId));
     setExperience({
       title: "",
       company: "",
       location: "",
       startDate: "",
-      endDate: "",
       description: "",
     });
     toast.success("Delete Successful", {
@@ -250,22 +281,15 @@ function ExperienceForm() {
                 label="Company Location"
                 value={experience.location}
               />
-              <TextField
+              <input
+                type="date"
                 onChange={handleChange}
+                id="dateInput"
                 name="startDate"
-                className="modalexInputcss"
-                id="outlined-basic"
-                label="Start Date"
+                pattern="\d{4}-\d{2}-\d{2}"
+                required
                 value={experience.startDate}
-              />
-              <TextField
-                onChange={handleChange}
-                name="endDate"
-                className="modalexInputcss"
-                id="outlined-basic"
-                label="End Date"
-                value={experience.endDate}
-              />
+              ></input>
 
               <TextField
                 onChange={handleChange}
@@ -308,7 +332,9 @@ function ExperienceForm() {
                 </div>
                 <div className="experienceTime">
                   <p className="expYear">{item.startDate}</p>
-                  <p className="exTime">{item.endDate}</p>
+                  <p className="exTime">
+                    {moment(item.startDate, "YYYYMMDD hh:mm").fromNow(true)}
+                  </p>
                 </div>
                 <p className="exSummery">{item.description}</p>
               </div>
@@ -359,22 +385,16 @@ function ExperienceForm() {
                       label="Company Location"
                       value={experience.location}
                     />
-                    <TextField
+
+                    <input
+                      type="date"
                       onChange={handleChange}
+                      id="dateInput"
                       name="startDate"
-                      className="modalexInputcss"
-                      id="outlined-basic"
-                      label="Start Date"
+                      pattern="\d{4}-\d{2}-\d{2}"
+                      required
                       value={experience.startDate}
-                    />
-                    <TextField
-                      onChange={handleChange}
-                      name="endDate"
-                      className="modalexInputcss"
-                      id="outlined-basic"
-                      label="End Date"
-                      value={experience.endDate}
-                    />
+                    ></input>
 
                     <TextField
                       onChange={handleChange}

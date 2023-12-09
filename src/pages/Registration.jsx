@@ -22,9 +22,8 @@ const Registration = () => {
   const auth = getAuth();
   const db = getDatabase();
   let navigate = useNavigate();
-  
-  let userInfo = useSelector((state) => state.logedUser.value);
 
+  let userInfo = useSelector((state) => state.logedUser.value);
 
   useEffect(() => {
     if (userInfo) {
@@ -132,6 +131,8 @@ const Registration = () => {
                     location: "",
                     bio: "",
                     about: "",
+                    coverPic:
+                      "https://firebasestorage.googleapis.com/v0/b/linkedin-redesign-ae4ef.appspot.com/o/cover.png?alt=media&token=8d02c00b-eafb-4578-8539-094d102b0666",
                     profile_picture:
                       "https://firebasestorage.googleapis.com/v0/b/chating-app-16608.appspot.com/o/profile.jpg?alt=media&token=91390ab6-6ce8-4918-a0f8-d5755f58d56b",
                   });

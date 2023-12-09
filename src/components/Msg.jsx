@@ -242,6 +242,52 @@ const Msg = () => {
   let handleForward = (iteam) => {
   
     console.log(iteam);
+    if(iteam.whoSenderID==userInfo.uid){
+
+
+      console.log("check",iteam.whoReceverName,fMsg);
+
+      
+    set(push(ref(db, "singleMsg")), {
+      whoMsgSenderId: userInfo.uid,
+      whoMsgSenderName: userInfo.displayName,
+      whoMsgSenderPic: userInfo.photoURL,
+      whoMsgReceverId: iteam.whoReceverID,
+      whoMsgReceverName: iteam.whoReceverName,
+      whoMsgReceverPic: iteam.whoReceverPicture,
+      msg: fMsg,
+      date: `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}`,
+    }).then(()=>{
+      setOpen(false)
+    })
+
+
+    }else{
+
+           
+    set(push(ref(db, "singleMsg")), {
+      whoMsgSenderId: userInfo.uid,
+      whoMsgSenderName: userInfo.displayName,
+      whoMsgSenderPic: userInfo.photoURL,
+      whoMsgReceverId: iteam.whoSenderID,
+      whoMsgReceverName: iteam.whoSenderName,
+      whoMsgReceverPic: iteam.whoSenderPicture,
+      msg: fMsg,
+      date: `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}`,
+    }).then(()=>{
+      setOpen(false)
+    })
+
+
+      console.log("check2",iteam.whoSenderName,fMsg);
+    }
+
+
+
     // set(push(ref(db, "singleMsg")), {
     //   whoMsgSenderId: userInfo.uid,
     //   whoMsgSenderName: userInfo.displayName,

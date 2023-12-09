@@ -87,6 +87,7 @@ const UserList = () => {
     });
   };
 
+
   let handleReqCancle = (item) => {
     const friendRequestRef = ref(db, "friendRequest");
     onValue(friendRequestRef, (snapshot) => {
@@ -97,10 +98,13 @@ const UserList = () => {
         ) {
           const frRQId = fRQitem.key;
           remove(ref(db, "friendRequest/" + frRQId));
+          
         }
       });
     });
   };
+
+
 
   return (
     <div className="box">
