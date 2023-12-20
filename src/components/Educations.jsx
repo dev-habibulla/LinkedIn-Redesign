@@ -94,7 +94,7 @@ const Educations = () => {
   };
 
   let handleAddEducation = () => {
-    console.log("2222",education.dateInput);
+    console.log("2222", education.dateInput);
     if (
       education.institute &&
       education.degree &&
@@ -238,6 +238,7 @@ const Educations = () => {
                 label="End Year"
                 value={education.endDate}
               />
+
               <input
                 type="date"
                 onChange={handleChange}
